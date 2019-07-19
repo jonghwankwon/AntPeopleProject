@@ -74,21 +74,21 @@ public class UserServiceImpl implements UserService {
 			return false;
 	}
 	
-	//출퇴근용
+
+		@Override
+		public void updateUser(UserDTO user) {
+			// TODO Auto-generated method stub
+			
+		}
+		//출퇴근용
 		@Override
 		public void saveGo(UserDTO userDTO) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		
 		@Override
 		public void saveOut(UserDTO userDTO) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void updateUser(UserDTO user) {
 			// TODO Auto-generated method stub
 			
 		}

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.antpeople.dto.user.UserDTO;
 import com.ezen.antpeople.service.UserService;
@@ -30,11 +29,17 @@ public class UserController {
 		logger.info("로그인 페이지");
 		return "login/login";
 	}
+	
+	//로그아웃
+	@RequestMapping("/pages/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:pages/login";
+	}
 
 	@RequestMapping(value="/pages/logincheck", method = RequestMethod.POST)
 	public String logincheck(@RequestParam("email") String email, @RequestParam("password") String password) throws Exception {
 		logger.info("체크 페이지");			
-//	public Model logincheck(HttpServletRequest request, Model model) throws Exception {
 		UserDTO userDto = new UserDTO();
 		userDto.loginUser(email, password);
 		String returnURL ="";
@@ -58,7 +63,6 @@ public class UserController {
 		return "pages/login";
 	}
 
-	// 출퇴근 기능
 	@RequestMapping(value = "goWork.do")
 	public Model goWork(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession(); // 세션을 가져옴
